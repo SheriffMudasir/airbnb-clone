@@ -1,0 +1,31 @@
+
+
+services:
+  web:
+    build: ./django_backend 
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      # Mount local code into container for development (live reload)
+      # Assumes WORKDIR in Dockerfile is /app
+      - ./django_backend:/app 
+    ports:
+      # Map host port 8000 to container port 8000
+      - "8000:8000" 
+    env_file:
+      # Load environment variables from this file
+      - ./.env.dev
+    depends_on:
+      # Ensure the database service is started before the web service
+      - db
+  db:
+    image: postgres:16
+    volumes:
+      # Persist database data on host machine
+      - postgres_data:/var/lib/postgresql/data 
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+
+volumes:
+  postgres_data:

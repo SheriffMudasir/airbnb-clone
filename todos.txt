@@ -2,5 +2,14 @@ colors: {
     "airbnb": "#ff385c",
         "airbnb-dark": "#d50027",
 }
+Q. docker compose down  # bring down the server, add -v to remove volume and clear up the db
 
-2:43
+Q. docker compose up   
+
+Q. After installing a package here(\Users\HP\Documents\AirBnB Clone\backend\django_backend") using pipenv navigate back to (\Users\HP\Documents\AirBnB Clone\backend") to run the build like this : docker compose build web
+
+Q. To check logs, run `docker compose logs web` in /backend DIR
+
+Q. To create a new app run  `docker compose exec web python manage.py startapp appname` in the backend DIR
+
+
